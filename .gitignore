@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# venv
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Outputs (用户生成文件不入库)
+clash.yaml
+clash_xsub.yaml
+*.log
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
