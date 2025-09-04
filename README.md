@@ -2,6 +2,14 @@
 
 将通用订阅（通常给 Shadowrocket/Loon/Quantumult X）中的节点（ss/vmess/trojan/ssr）转换为 Clash/Clash Meta 兼容的 `yaml` 配置。
 
+### 项目定位与特点
+
+- **本地命令行工具**：无需后端服务或网页，终端一条命令完成转换。
+- **隐私安全**：仅从你的订阅源拉取内容，解析与生成均在本机完成，**不上传、不中转**。
+- **格式覆盖**：支持 `ss / vmess / trojan`；在 `--clash-meta` 开关下原生输出 `ssr`（适配 Clash Meta）。
+- **自动更新**：`--interval-minutes` 内置定时拉取，无需额外定时器（也可配合 LaunchAgent）。
+- **最简可用配置**：生成 `proxies + select 组 + MATCH 规则`，便于二次编辑或拼装。
+
 ### 安装依赖
 
 ```bash
@@ -41,6 +49,13 @@ python sub2clash.py --url "https://example.com/sub" --output clash.yaml --name M
 nohup bash -lc 'source .venv/bin/activate && python sub2clash.py --url "https://example.com/sub" --output clash.yaml --name MySub --interval-minutes 60' >/tmp/sub2clash.log 2>&1 &
 ```
 
+### 隐私与安全
+
+- 本工具不会将订阅或解析后的内容上传到任何第三方，仅进行本地处理。
+- 日志默认打印到终端，你也可以使用 `nohup` 重定向到本地文件。
+- 已在 `.gitignore` 忽略 `clash.yaml`、`clash_xsub.yaml` 等输出，避免误传至公开仓库。
+- 如需进一步控制，可先将订阅保存为本地文件，再用 `--url file:///绝对路径` 离线解析。
+
 ### 发布到 GitHub
 
 建议忽略用户生成文件与环境依赖（已提供 `.gitignore`）。
@@ -53,6 +68,10 @@ git branch -M main
 git remote add origin https://github.com/pengtao199/Sub2Clash.git
 git push -u origin main
 ```
+
+### 许可证
+
+本项目采用 MIT License，详见 `LICENSE`。
 
 ### 支持与限制
 
